@@ -14,8 +14,9 @@ flatpak install -y flathub one.ablaze.floorp com.vscodium.codium
 
 sed -i "s/^#alias \(ll\|la\|l\)=/alias \1=/" ~/.bashrc
 
-cd ~/.cache
-git clone https://github.com/kyusumya/dotfiles
-rsync -av --exclude='.*' dotfiles/ ~/.config/
-rm -rf dotfiles
-
+DOTFILES_DIR=~/.cache/dotfiles
+if [ ! -d "$DOTFILES_DIR" ]; then
+  git clone https://github.com/kyusumya/dotfiles "$DOTFILES_DIR"
+  rsync -av --exclude='.*' "$DOTFILES_DIR/" ~/.config/
+  rm -rf "$DOTFILES_DIR"
+fi
