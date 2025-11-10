@@ -10,9 +10,10 @@ sudo sed -i 's|^\(\s*\)//\s*\("origin=Debian,codename=${distro_codename}-propose
 
 sudo ufw --force enable && sudo ufw default deny incoming
 
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub one.ablaze.floorp com.vscodium.codium
 
-sed -i "s/^#alias \(ll\|la\|l\)=/alias \1=/" ~/.bashrc
+sed -i -E 's/^[[:space:]]*#(alias (ll|la|l)=)/\1/' ~/.bashrc
 
 DOTFILES_DIR=~/.cache/dotfiles
 if [ ! -d "$DOTFILES_DIR" ]; then
