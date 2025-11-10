@@ -1,4 +1,5 @@
 #!/bin/bash
+
 sudo apt install -y unattended-upgrades ufw flatpak fcitx5-mozc git rsync
 
 sudo dpkg-reconfigure --priority=low unattended-upgrades
@@ -22,4 +23,5 @@ if [ ! -d "$DOTFILES_DIR" ]; then
   rsync -av --exclude='.*' "$DOTFILES_DIR/" ~/.config/
   rm -rf "$DOTFILES_DIR"
 fi
+
 
