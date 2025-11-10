@@ -8,7 +8,7 @@ echo 'APT::Periodic::AutocleanInterval "7";' | sudo tee -a /etc/apt/apt.conf.d/1
 sudo sed -i 's|^\(\s*\)//\s*\("origin=Debian,codename=${distro_codename}-updates";\)|\1\2|' /etc/apt/apt.conf.d/50unattended-upgrades
 sudo sed -i 's|^\(\s*\)//\s*\("origin=Debian,codename=${distro_codename}-proposed-updates";\)|\1\2|' /etc/apt/apt.conf.d/50unattended-upgrades
 
-sudo ufw enable && sudo ufw default deny incoming
+sudo ufw --force enable && sudo ufw default deny incoming
 
 flatpak install -y flathub one.ablaze.floorp com.vscodium.codium
 
