@@ -16,11 +16,20 @@ sudo ufw --force enable && sudo ufw default deny incoming
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub one.ablaze.floorp com.vscodium.codium
 
-sed -i -E 's/^[[:space:]]*#(alias (ll|la|l)=)/\1/' ~/.bashrc
+sed -i -E 's/^[[:space:]]*#(alias (ll|la|l)=)/\1/' $HOME/bashrc
 
-DOTFILES_DIR=~/.cache/dotfiles
+DOTFILES_DIR=$HOME/.cache/dotfiles
 if [ ! -d "$DOTFILES_DIR" ]; then
   git clone https://github.com/kyusumya/dotfiles "$DOTFILES_DIR"
-  rsync -av --exclude='.*' "$DOTFILES_DIR/" ~/.config/
+  pkill xfce4-panel && pkill xfwm4 && pkill xfsettingsd
+  rm -rf "$HOME/.config/xfce4"
+  rsync -av --exclude='.git/' "$DOTFILES_DIR/" $HOME/.config/
+  chown -R $USER:$USER "$HOME/.config/"
+  chmod -R u+rw "$HOME/.config/"
   rm -rf "$DOTFILES_DIR"
+  xfce4-panel &
+  xfwm4 --replace &
+  xfsettingsd --replace &
 fi
+
+sudo reboot
