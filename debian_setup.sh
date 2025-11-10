@@ -1,4 +1,4 @@
-sudo apt install unattended-upgrades ufw flatpak fcitx5-mozc git rsync
+sudo apt install -y unattended-upgrades ufw flatpak fcitx5-mozc git rsync
 
 sudo dpkg-reconfigure --priority=low unattended-upgrades
 grep -q 'APT::Periodic::Download-Upgradeable-Packages' /etc/apt/apt.conf.d/10periodic || \
@@ -18,3 +18,4 @@ cd ~/.cache
 git clone https://github.com/kyusumya/dotfiles
 rsync -av --exclude='.*' dotfiles/ ~/.config/
 rm -rf dotfiles
+
