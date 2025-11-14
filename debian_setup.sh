@@ -13,6 +13,8 @@ sudo sed -i 's|^\([[:space:]]*\)//[[:space:]]*\("origin=Debian,codename=${distro
 
 sudo ufw --force enable && sudo ufw default deny incoming
 
+sudo apt purge -y libreoffice*
+
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub one.ablaze.floorp com.vscodium.codium
 
@@ -31,5 +33,3 @@ if [ ! -d "$DOTFILES_DIR" ]; then
   xfwm4 --replace &
   xfsettingsd --replace &
 fi
-
-sudo reboot
