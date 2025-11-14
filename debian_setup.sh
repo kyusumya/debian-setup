@@ -8,8 +8,8 @@ grep -q 'APT::Periodic::Download-Upgradeable-Packages' /etc/apt/apt.conf.d/10per
 echo 'APT::Periodic::Download-Upgradeable-Packages "1";' | sudo tee -a /etc/apt/apt.conf.d/10periodic
 grep -q 'APT::Periodic::AutocleanInterval' /etc/apt/apt.conf.d/10periodic || \
 echo 'APT::Periodic::AutocleanInterval "7";' | sudo tee -a /etc/apt/apt.conf.d/10periodic
-sudo sed -i 's|^\([[:space:]]*\)//\([[:space:]]*\"origin=Debian,codename=${distro_codename}-updates\";\)|\1\2|' /etc/apt/apt.conf.d/50unattended-upgrades
-sudo sed -i 's|^\([[:space:]]*\)//\([[:space:]]*\"origin=Debian,codename=${distro_codename}-proposed-updates\";\)|\1\2|' /etc/apt/apt.conf.d/50unattended-upgrades
+sudo sed -i 's|^\([[:space:]]*\)//[[:space:]]*\("origin=Debian,codename=${distro_codename}-updates";\)|\1\2|' /etc/apt/apt.conf.d/50unattended-upgrades
+sudo sed -i 's|^\([[:space:]]*\)//[[:space:]]*\("origin=Debian,codename=${distro_codename}-proposed-updates";\)|\1\2|' /etc/apt/apt.conf.d/50unattended-upgrades
 
 sudo ufw --force enable && sudo ufw default deny incoming
 
