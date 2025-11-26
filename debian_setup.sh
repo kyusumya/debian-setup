@@ -7,6 +7,10 @@ grep -q 'APT::Periodic::Download-Upgradeable-Packages' /etc/apt/apt.conf.d/10per
 echo 'APT::Periodic::Download-Upgradeable-Packages "1";' | sudo tee -a /etc/apt/apt.conf.d/10periodic
 grep -q 'APT::Periodic::AutocleanInterval' /etc/apt/apt.conf.d/10periodic || \
 echo 'APT::Periodic::AutocleanInterval "7";' | sudo tee -a /etc/apt/apt.conf.d/10periodic
+grep -q 'APT::Periodic::Update-Package-Lists' /etc/apt/apt.conf.d/10periodic || \
+echo 'APT::Periodic::Update-Package-Lists "1";' | sudo tee -a /etc/apt/apt.conf.d/10periodic
+grep -q 'APT::Periodic::Unattended-Upgrade' /etc/apt/apt.conf.d/10periodic || \
+echo 'APT::Periodic::Unattended-Upgrade "1";' | sudo tee -a /etc/apt/apt.conf.d/10periodic
 sudo tee /etc/apt/apt.conf.d/52unattended-upgrades-local <<'EOF'
 Unattended-Upgrade::Allowed-Origins {
         "${distro_id}:${distro_codename}-security";
