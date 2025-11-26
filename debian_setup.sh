@@ -21,7 +21,7 @@ sudo dpkg-reconfigure -f noninteractive unattended-upgrades
 
 sudo ufw --force enable && sudo ufw default deny incoming
 
-sudo apt purge -y firefox* libreoffice* 
+sudo apt purge -y firefox* libreoffice* && sudo apt autoremove -y
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub one.ablaze.floorp com.vscodium.codium org.libreoffice.LibreOffice
